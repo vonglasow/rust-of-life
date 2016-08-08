@@ -55,14 +55,53 @@ mod tests {
     }
 
     #[test]
-    fn cell_struct_is_alive_will_die() {
+    fn cell_struct_will_die() {
         use Cell;
-        let c = Cell {x: 1, y: 1, alive: true};
-        assert_eq!(true, c.alive);
-        assert_eq!(1, c.x);
-        assert_eq!(1, c.y);
-        let newc = c.compute_state(1);
-        assert_eq!(false, newc.alive);
+
+        let test_data = vec!(
+            (false, 0),
+            (false, 1),
+            (false, 2),
+            (false, 4),
+            (false, 5),
+            (false, 6),
+            (false, 7),
+            (false, 8),
+
+            (true, 0),
+            (true, 1),
+            (true, 4),
+            (true, 5),
+            (true, 6),
+            (true, 7),
+            (true, 8),
+        );
+        for (i, item) in test_data.iter().enumerate() {
+            let c = Cell {x: 1, y: 1, alive: item.0};
+            let newc = c.compute_state(item.1);
+            assert!(false == newc.alive, "Data set {} failed. dead expected, got alive", i);
+            assert_eq!(c.x, newc.x);
+            assert_eq!(c.y, newc.y);
+        }
+     }
+
+    #[test]
+    fn cell_struct_will_live() {
+        use Cell;
+        let test_data = vec!(
+            (false, 3),
+
+            (true,  2),
+            (true,  3),
+        );
+
+        for (i, item) in test_data.iter().enumerate() {
+            let c = Cell {x: 1, y: 1, alive: item.0};
+            let newc = c.compute_state(item.1);
+            assert!(true == newc.alive, "Data set {} failed. alive expected, got dead", i);
+            assert_eq!(c.x, newc.x);
+            assert_eq!(c.y, newc.y);
+        }
     }
 
     #[test]
