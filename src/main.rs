@@ -20,7 +20,14 @@ impl Cell {
 
 #[cfg(not(test))]
 fn main() {
+    use Cell;
     println!("Game of Life");
+    let cell = Cell {x: 1, y: 1, alive: true};
+    println!("Cell state is {}, x:{} , y:{}", cell.alive, cell.x, cell.y);
+    println!("Change state of cell");
+    let new_cell = cell.compute_state(25);
+    println!("Old Cell state is {}, x:{} , y:{}", cell.alive, cell.x, cell.y);
+    println!("New Cell state is {}, x:{} , y:{}", new_cell.alive, new_cell.x, new_cell.y);
 }
 
 #[cfg(test)]
