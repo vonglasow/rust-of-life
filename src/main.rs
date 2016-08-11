@@ -10,7 +10,11 @@ impl Cell {
             return Cell { alive: true, .. *self };
         }
 
-        return Cell { x: self.x, y: self.y, alive: neighbors_alive == 2};
+        if self.alive == false && neighbors_alive == 3 {
+            return Cell { alive: true, .. *self };
+        }
+
+        return Cell { alive: false, .. *self};
     }
 }
 
@@ -55,5 +59,18 @@ mod tests {
         assert_eq!(1, c.y);
         let newc = c.compute_state(3);
         assert_eq!(true, newc.alive);
+    }
+
+    #[test]
+    fn cell_struct_is_dead_will_live() {
+        use Cell;
+        let c = Cell {x: 10, y: 1, alive: false};
+        assert_eq!(false, c.alive);
+        assert_eq!(10, c.x);
+        assert_eq!(1, c.y);
+        let newc = c.compute_state(3);
+        assert_eq!(true, newc.alive);
+        assert_eq!(10, newc.x);
+        assert_eq!(1, newc.y);
     }
 }
