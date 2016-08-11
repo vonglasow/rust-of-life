@@ -6,6 +6,10 @@ struct Cell {
 
 impl Cell {
     fn compute_state(&self, neighbors_alive: i64) -> Cell {
+        if self.alive == true && (neighbors_alive == 2 || neighbors_alive == 3) {
+            return Cell { alive: true, .. *self };
+        }
+
         return Cell { x: self.x, y: self.y, alive: neighbors_alive == 2};
     }
 }
@@ -40,5 +44,16 @@ mod tests {
         assert_eq!(1, c.y);
         let newc = c.compute_state(1);
         assert_eq!(false, newc.alive);
+    }
+
+    #[test]
+    fn cell_struct_is_alive_stay_alive() {
+        use Cell;
+        let c = Cell {x: 1, y: 1, alive: true};
+        assert_eq!(true, c.alive);
+        assert_eq!(1, c.x);
+        assert_eq!(1, c.y);
+        let newc = c.compute_state(3);
+        assert_eq!(true, newc.alive);
     }
 }
