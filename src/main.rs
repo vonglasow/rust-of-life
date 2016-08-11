@@ -1,3 +1,7 @@
+extern crate ansi_term;
+
+mod printer;
+
 struct Cell {
     x: i64,
     y: i64,
@@ -21,6 +25,8 @@ impl Cell {
 #[cfg(not(test))]
 fn main() {
     use Cell;
+    use printer::CliPrinter;
+
     println!("Game of Life");
     let cell = Cell {x: 1, y: 1, alive: true};
     println!("Cell state is {}, x:{} , y:{}", cell.alive, cell.x, cell.y);
@@ -28,6 +34,8 @@ fn main() {
     let new_cell = cell.compute_state(25);
     println!("Old Cell state is {}, x:{} , y:{}", cell.alive, cell.x, cell.y);
     println!("New Cell state is {}, x:{} , y:{}", new_cell.alive, new_cell.x, new_cell.y);
+    let printer = CliPrinter;
+    printer.print_cell(cell);
 }
 
 #[cfg(test)]
@@ -79,5 +87,14 @@ mod tests {
         assert_eq!(true, newc.alive);
         assert_eq!(10, newc.x);
         assert_eq!(1, newc.y);
+    }
+
+    #[test]
+    fn printer_print_cell() {
+        use Cell;
+        use printer::CliPrinter;
+        let printer = CliPrinter;
+        let cell = Cell{x: 1, y: 1, alive: true};
+        printer.print_cell(cell);
     }
 }
