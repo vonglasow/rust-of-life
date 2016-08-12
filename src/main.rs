@@ -2,7 +2,7 @@ extern crate ansi_term;
 
 mod printer;
 
-struct Cell {
+pub struct Cell {
     x: i64,
     y: i64,
     alive: bool,
