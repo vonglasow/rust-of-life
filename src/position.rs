@@ -1,6 +1,7 @@
 #[derive(PartialEq)]
 #[derive(Clone)]
 #[derive(Copy)]
+#[derive(Debug)]
 pub struct Position {
     pub x: i16,
     pub y: i16,

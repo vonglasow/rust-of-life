@@ -31,6 +31,7 @@ mod tests {
         assert_eq!(true, c.alive);
         let newc = c.compute_state(1);
         assert_eq!(false, newc.alive);
+        assert_eq!(c.position, newc.position);
     }
 
     #[test]
@@ -42,6 +43,7 @@ mod tests {
         assert_eq!(true, c.alive);
         let newc = c.compute_state(3);
         assert_eq!(true, newc.alive);
+        assert_eq!(c.position, newc.position);
     }
 
     #[test]
@@ -53,6 +55,7 @@ mod tests {
         assert_eq!(false, c.alive);
         let newc = c.compute_state(3);
         assert_eq!(true, newc.alive);
+        assert_eq!(c.position, newc.position);
     }
 
     #[test]
@@ -64,5 +67,6 @@ mod tests {
         assert_eq!(false, c.alive);
         let newc = c.compute_state(2);
         assert_eq!(false, newc.alive);
+        assert_eq!(c.position, newc.position);
     }
 }
