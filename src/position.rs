@@ -16,12 +16,19 @@ impl Position {
     pub fn get_neighbors_positions_2d(&self, width: i16, length: i16) -> Vec<Position> {
         let mut positions: Vec<Position> = vec![];
         for i in -1..2 {
-            let y = self.y + i;
-            if y < 0 || y > length - 1 {
-                continue;
+            let mut y = self.y + i;
+            if y < 0 {
+                y = length + i;
+            } else if y > length - 1 {
+                y = -1 + i;
             }
             for j in -1..2 {
-                let x = self.x + j;
+                let mut x = self.x + j;
+                if x < 0 {
+                    x = width + j;
+                } else if x > width - 1 {
+                    x = -1 + j;
+                }
                 if x < 0 || x > width - 1 || (i == 0 && j == 0) {
                     continue;
                 }
@@ -67,16 +74,31 @@ mod tests {
     fn test_get_neighbors_positions_2d() {
         use position::Position;
         let position1 = Position::create_2d(0, 0);
-        let neighbors = position1.get_neighbors_positions_2d(2, 2);
-        assert_eq!(3, neighbors.len());
+        let neighbors = position1.get_neighbors_positions_2d(3, 3);
+        assert_eq!(8, neighbors.len());
 
-        assert_eq!(1, neighbors[0].x);
-        assert_eq!(0, neighbors[0].y);
+        assert_eq!(2, neighbors[0].x);
+        assert_eq!(2, neighbors[0].y);
 
         assert_eq!(0, neighbors[1].x);
-        assert_eq!(1, neighbors[1].y);
+        assert_eq!(2, neighbors[1].y);
 
         assert_eq!(1, neighbors[2].x);
-        assert_eq!(1, neighbors[2].x);
+        assert_eq!(2, neighbors[2].y);
+
+        assert_eq!(2, neighbors[3].x);
+        assert_eq!(0, neighbors[3].y);
+
+        assert_eq!(1, neighbors[4].x);
+        assert_eq!(0, neighbors[4].y);
+
+        assert_eq!(2, neighbors[5].x);
+        assert_eq!(1, neighbors[5].y);
+
+        assert_eq!(0, neighbors[6].x);
+        assert_eq!(1, neighbors[6].y);
+
+        assert_eq!(1, neighbors[7].x);
+        assert_eq!(1, neighbors[7].y);
     }
 }
