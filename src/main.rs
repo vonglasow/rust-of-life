@@ -1,25 +1,27 @@
 extern crate ansi_term;
+extern crate rand;
 
 mod printer;
 mod position;
 mod cell;
+mod world;
 
 #[cfg(not(test))]
 fn main() {
     use cell::Cell;
     use printer::CliPrinter;
     use position::Position;
+    use world::World;
+    use std::process::Command;
+    use std::thread;
 
-    println!("Game of Life");
-    let position = Position::create_2d(1, 1);
-    let cell = Cell {position: position, alive: true};
-    println!("Cell state is {}, x:{} , y:{}", cell.alive, cell.position.x, cell.position.y);
-    println!("Change state of cell");
-    let new_cell = cell.compute_state(25);
-    println!("Old Cell state is {}, x:{} , y:{}", cell.alive, cell.position.x, cell.position.y);
-    println!("New Cell state is {}, x:{} , y:{}", new_cell.alive, new_cell.position.x, new_cell.position.y);
-    let printer = CliPrinter;
-    printer.print_cell(cell);
+    let mut world = World::create_2d(20, 20);
+    CliPrinter::print_world(&world);
+    for i in 0..1000 {
+        world = world.next_gen();
+        CliPrinter::print_world(&world);
+        thread::sleep_ms(500);
+    }
 }
 
 #[cfg(test)]
