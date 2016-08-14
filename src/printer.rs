@@ -54,6 +54,6 @@ mod tests {
         use world::World;
 
         let world = World::create_2d(10, 10);
-        CliPrinter::print_world(world);
+        CliPrinter::print_world(&world);
     }
 }
