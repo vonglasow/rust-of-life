@@ -6,3 +6,4 @@ authors = ["Alexis von Glasow <ashgenesis@gmail.com>", "Rémi Parpaillon <remi.p
 [dependencies]
 ansi_term = "0.8"
 rand = "0.3"
+clap = "2"
