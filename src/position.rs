@@ -100,5 +100,34 @@ mod tests {
 
         assert_eq!(1, neighbors[7].x);
         assert_eq!(1, neighbors[7].y);
+
+        let position1 = Position::create_2d(10, 0);
+        let neighbors = position1.get_neighbors_positions_2d(20, 20);
+        assert_eq!(8, neighbors.len());
+
+        assert_eq!(9, neighbors[0].x);
+        assert_eq!(19, neighbors[0].y);
+
+        assert_eq!(10, neighbors[1].x);
+        assert_eq!(19, neighbors[1].y);
+
+        assert_eq!(11, neighbors[2].x);
+        assert_eq!(19, neighbors[2].y);
+
+        assert_eq!(9, neighbors[3].x);
+        assert_eq!(0, neighbors[3].y);
+
+        assert_eq!(11, neighbors[4].x);
+        assert_eq!(0, neighbors[4].y);
+
+        assert_eq!(9, neighbors[5].x);
+        assert_eq!(1, neighbors[5].y);
+
+        assert_eq!(10, neighbors[6].x);
+        assert_eq!(1, neighbors[6].y);
+
+        assert_eq!(11, neighbors[7].x);
+        assert_eq!(1, neighbors[7].y);
+
     }
 }

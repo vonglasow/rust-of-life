@@ -65,11 +65,13 @@ mod tests {
     #[test]
     fn test_create_2d() {
         use world::World;
-        let world = World::create_2d(10, 10);
+        let world = World::create_2d(20, 20);
         assert_eq!(9, world.cells[0][9].position.x);
         assert_eq!(0, world.cells[0][9].position.y);
         assert_eq!(0, world.cells[1][0].position.x);
         assert_eq!(1, world.cells[1][0].position.y);
+        assert_eq!(20, world.cells[0].len());
+        let ref c = world.cells[0][19];
     }
 
     #[test]
