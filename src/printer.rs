@@ -25,11 +25,12 @@ impl CliPrinter {
         Command::new("clear").status();
         println!("World age : {}", world.age);
         for y in 0..world.cells.len() {
-            print!("\n");
+            println!("");
             for cell in &world.cells[y] {
                 CliPrinter::print_cell(Cell{ .. cell.clone()});
             }
         }
+        println!("");
     }
 }
 
