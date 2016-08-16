@@ -14,7 +14,7 @@ impl CliPrinter {
         } else {
             color = Cyan;
         }
-        println!("{}", Style::new().on(color).paint("  "));
+        print!("{}", Style::new().on(color).paint("  "));
     }
 }
 
