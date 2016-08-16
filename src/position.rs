@@ -30,7 +30,7 @@ mod position_test {
         use position::Position;
         let position1 = Position {x: 1, y: 2, z: 3};
         let position2 = Position {x: 1, y: 2, z: 3};
-        assert_eq!(true, position1 == position2);
+        assert!(position1 == position2);
     }
 
     #[test]
@@ -38,10 +38,10 @@ mod position_test {
         use position::Position;
         let position1 = Position {x: 1, y: 2, z: 3};
         let position2 = Position {x: 2, y: 2, z: 3};
-        assert_eq!(true, position1 != position2);
+        assert!(position1 != position2);
         let position2 = Position {x: 1, y: 1, z: 3};
-        assert_eq!(true, position1 != position2);
+        assert!(position1 != position2);
         let position2 = Position {x: 1, y: 2, z: 2};
-        assert_eq!(true, position1 != position2);
+        assert!(position1 != position2);
     }
 }
