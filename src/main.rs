@@ -20,6 +20,7 @@ fn main() {
     println!("New Cell state is {}, x:{} , y:{}", new_cell.alive, new_cell.position.x, new_cell.position.y);
     let printer = CliPrinter;
     printer.print_cell(cell);
+    printer.print_cell(new_cell);
 }
 
 #[cfg(test)]
