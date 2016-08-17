@@ -5,16 +5,16 @@ pub struct CliPrinter;
 impl CliPrinter {
     pub fn print_cell(&self, cell: Cell) {
         use ansi_term::Style;
-        use ansi_term::Color::Black;
-        use ansi_term::Color::White;
+        use ansi_term::Color::Blue;
+        use ansi_term::Color::Cyan;
 
         let color;
         if cell.alive {
-            color = Black;
+            color = Blue;
         } else {
-            color = White;
+            color = Cyan;
         }
-        println!("{}", Style::new().on(color).paint("  "));
+        print!("{}", Style::new().on(color).paint("  "));
     }
 }
 

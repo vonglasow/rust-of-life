@@ -19,7 +19,7 @@ mod tests {
         use position::Position;
         let position = Position::create_2d(1, 1);
         let c = Cell {position: position, alive: true};
-        assert_eq!(true, c.alive);
+        assert!(true, c.alive);
     }
 
     #[test]
@@ -28,9 +28,9 @@ mod tests {
         use position::Position;
         let position = Position::create_2d(1, 1);
         let c = Cell {position: position, alive: true};
-        assert_eq!(true, c.alive);
+        assert!(c.alive);
         let newc = c.compute_state(1);
-        assert_eq!(false, newc.alive);
+        assert!(!newc.alive);
         assert_eq!(c.position, newc.position);
     }
 
@@ -40,9 +40,9 @@ mod tests {
         use position::Position;
         let position = Position::create_2d(1, 1);
         let c = Cell {position: position, alive: true};
-        assert_eq!(true, c.alive);
+        assert!(c.alive);
         let newc = c.compute_state(3);
-        assert_eq!(true, newc.alive);
+        assert!(newc.alive);
         assert_eq!(c.position, newc.position);
     }
 
@@ -52,9 +52,9 @@ mod tests {
         use position::Position;
         let position = Position::create_2d(1, 1);
         let c = Cell {position: position, alive: false};
-        assert_eq!(false, c.alive);
+        assert!(!c.alive);
         let newc = c.compute_state(3);
-        assert_eq!(true, newc.alive);
+        assert!(newc.alive);
         assert_eq!(c.position, newc.position);
     }
 
@@ -64,9 +64,9 @@ mod tests {
         use position::Position;
         let position = Position::create_2d(1, 1);
         let c = Cell {position: position, alive: false};
-        assert_eq!(false, c.alive);
+        assert!(!c.alive);
         let newc = c.compute_state(2);
-        assert_eq!(false, newc.alive);
+        assert!(!newc.alive);
         assert_eq!(c.position, newc.position);
     }
 }
