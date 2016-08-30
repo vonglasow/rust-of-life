@@ -19,7 +19,7 @@ mod tests {
         use position::Position;
         let position = Position::create_2d(1, 1);
         let c = Cell {position: position, alive: true};
-        assert!(true, c.alive);
+        assert!(c.alive);
     }
 
     #[test]
