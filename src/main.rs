@@ -13,6 +13,7 @@ fn main() {
     use world::World;
     use std::thread;
     use clap::App;
+    use std::time::Duration;
 
     let matches = App::new("Rust of life")
         .version("v1.0-beta")
@@ -33,10 +34,10 @@ fn main() {
     }
     let mut world = World::create_2d(width, length);
     CliPrinter::print_world(&world);
-    for i in 0..1000 {
+    for _i in 0..1000 {
         world = world.next_gen();
         CliPrinter::print_world(&world);
-        thread::sleep_ms(500);
+        thread::sleep(Duration::from_millis(500));
     }
 }
 
