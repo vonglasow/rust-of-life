@@ -1,8 +1,9 @@
 [package]
+edition = "2018"
 name = "rust-of-life"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["Alexis von Glasow <ashgenesis@gmail.com>", "Rémi Parpaillon <remi.parpaillon@gmail.com"]
 
 [dependencies]
-ansi_term = "0.8"
-rand = "0.3.14"
+ansi_term = "0.12.1"
+rand = "0.7.2"
