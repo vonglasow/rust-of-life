@@ -19,7 +19,7 @@ fn main() {
         for x in 0..10 {
             let position = Position::create_2d(x, y);
             let cell = Cell {position: position, alive: true};
-            let new_cell = cell.compute_state(rng.gen_range::<i64>(1, 4));
+            let new_cell = cell.compute_state(rng.gen_range(1, 4));
             let printer = CliPrinter;
             printer.print_cell(cell);
             printer.print_cell(new_cell);
