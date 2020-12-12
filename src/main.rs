@@ -1,25 +1,27 @@
 extern crate ansi_term;
-extern crate rand;
 extern crate clap;
+extern crate rand;
 
-mod printer;
-mod position;
 mod cell;
+mod position;
+mod printer;
 mod world;
 
 #[cfg(not(test))]
 fn main() {
-    use printer::CliPrinter;
-    use world::World;
-    use std::thread;
     use clap::App;
+    use printer::CliPrinter;
+    use std::{thread, time};
+    use world::World;
 
     let matches = App::new("Rust of life")
         .version("v1.0-beta")
-         .args_from_usage("
+        .args_from_usage(
+            "
              <width> 'Width of the world'
              <length> 'Length of the world'
-        ")
+        ",
+        )
         .get_matches();
 
     let mut width: i16 = 20;
@@ -33,10 +35,10 @@ fn main() {
     }
     let mut world = World::create_2d(width, length);
     CliPrinter::print_world(&world);
-    for i in 0..1000 {
+    for _i in 0..1000 {
         world = world.next_gen();
         CliPrinter::print_world(&world);
-        thread::sleep_ms(500);
+        thread::sleep(time::Duration::from_secs(1));
     }
 }
 

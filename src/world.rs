@@ -10,8 +10,6 @@ impl World {
     pub fn create_2d(width: i16, length: i16) -> World {
         extern crate rand;
         use rand::{Rng};
-        use cell::Cell;
-        use position::Position;
 
         let mut cells: Vec<Vec<Cell>> = vec![];
         let mut rng = rand::thread_rng();

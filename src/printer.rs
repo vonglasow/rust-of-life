@@ -5,9 +5,9 @@ pub struct CliPrinter;
 
 impl CliPrinter {
     pub fn print_cell(cell: Cell) {
-        use ansi_term::Style;
         use ansi_term::Color::Black;
         use ansi_term::Color::White;
+        use ansi_term::Style;
 
         let color;
         if cell.alive {
@@ -22,12 +22,14 @@ impl CliPrinter {
         use std::process::Command;
 
         println!("");
-        Command::new("clear").status();
+        Command::new("clear")
+            .status()
+            .expect("An error occured during clear");
         println!("World age : {}", world.age);
         for y in 0..world.cells.len() {
             println!("");
             for cell in &world.cells[y] {
-                CliPrinter::print_cell(Cell{ .. cell.clone()});
+                CliPrinter::print_cell(Cell { ..cell.clone() });
             }
         }
         println!("");
@@ -38,14 +40,22 @@ impl CliPrinter {
 mod tests {
     #[test]
     fn printer_print_cell() {
-        use printer::CliPrinter;
         use cell::Cell;
         use position::Position;
+        use printer::CliPrinter;
 
         let position = Position::create_2d(1, 1);
-        let cell = Cell{position: position, alive: true, neighbors_positions: vec![]};
+        let cell = Cell {
+            position: position,
+            alive: true,
+            neighbors_positions: vec![],
+        };
         CliPrinter::print_cell(cell);
-        let cell = Cell{position: position, alive: false, neighbors_positions: vec![]};
+        let cell = Cell {
+            position: position,
+            alive: false,
+            neighbors_positions: vec![],
+        };
         CliPrinter::print_cell(cell);
     }
 
